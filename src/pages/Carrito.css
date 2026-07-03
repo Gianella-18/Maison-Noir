@@ -1,0 +1,91 @@
+
+/* CUPONES */
+.carrito__cupon {
+  margin: 0.5rem 0;
+}
+
+.carrito__cupon-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin-bottom: 0.8rem;
+}
+
+.carrito__cupon-form {
+  display: flex;
+  gap: 0;
+}
+
+.carrito__cupon-input {
+  flex: 1;
+  border: 1px solid var(--gris-clair);
+  border-right: none;
+  padding: 0.7rem 0.8rem;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--noir);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.carrito__cupon-input:focus {
+  border-color: var(--or);
+}
+
+.carrito__cupon-btn {
+  background: var(--noir);
+  color: var(--blanc);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  border: 1px solid var(--noir);
+  transition: background 0.3s ease;
+}
+
+.carrito__cupon-btn:hover {
+  background: var(--or);
+  border-color: var(--or);
+  color: var(--noir);
+}
+
+.carrito__cupon-aplicado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f0fff4;
+  border: 1px solid #276749;
+  padding: 0.6rem 0.8rem;
+  font-size: 11px;
+  color: #276749;
+  gap: 0.5rem;
+}
+
+.carrito__cupon-quitar {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gris);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  flex-shrink: 0;
+}
+
+.carrito__cupon-error {
+  font-size: 11px;
+  color: #c00;
+  margin-top: 0.4rem;
+  letter-spacing: 0.03em;
+}
+
+.carrito__descuento-row {
+  color: #276749;
+  font-size: 12px;
+  margin-bottom: 0.5rem;
+}

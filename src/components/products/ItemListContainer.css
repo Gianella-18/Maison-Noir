@@ -1,0 +1,108 @@
+.ilc__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1.5rem;
+  color: var(--gris);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ilc__spinner {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--gris-clair);
+  border-top-color: var(--or);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.ilc__hero {
+  text-align: center;
+  padding: 5rem 2rem 3rem;
+  border-bottom: 1px solid var(--gris-clair);
+}
+
+.ilc__season {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 0.8rem;
+}
+
+.ilc__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--noir);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.ilc__subtitle {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris);
+}
+
+.ilc__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  justify-content: center;
+  padding: 2rem;
+  border-bottom: 1px solid var(--gris-clair);
+}
+
+.ilc__filter {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.4rem;
+  color: var(--gris);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.ilc__filter:hover {
+  color: var(--noir);
+}
+
+.ilc__filter.active {
+  color: var(--noir);
+  border-color: var(--noir);
+}
+
+.ilc__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  padding: 2px;
+  background-color: var(--gris-clair);
+}
+
+.ilc__grid > * {
+  background-color: var(--blanc);
+  padding: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .ilc__grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .ilc__grid { grid-template-columns: repeat(2, 1fr); }
+  .ilc__hero { padding: 3rem 1.5rem 2rem; }
+}
+@media (max-width: 480px) {
+  .ilc__grid { grid-template-columns: 1fr; }
+}

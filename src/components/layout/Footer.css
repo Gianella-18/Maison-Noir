@@ -1,0 +1,151 @@
+.footer {
+  background-color: var(--noir);
+  color: var(--creme);
+  margin-top: auto;
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  padding: 4rem 3rem;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.footer__logo {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  color: var(--blanc);
+  margin-bottom: 1.5rem;
+}
+
+.footer__claim {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--gris-clair);
+}
+
+.footer__atrib {
+  margin-top: 0.5rem;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--or);
+  text-transform: uppercase;
+}
+
+.footer__section-label {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 1.5rem;
+}
+
+.footer__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.team-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.team-card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.team-card__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--or);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--or);
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.team-card__nombre {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--blanc);
+  letter-spacing: 0.05em;
+}
+
+.team-card__rol {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin: 0.2rem 0 0.5rem;
+}
+
+.team-card__bio {
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--gris);
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+}
+
+.footer__links {
+  display: flex;
+  gap: 2rem;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris);
+}
+
+.footer__links span {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer__links span:hover {
+  color: var(--or);
+}
+
+.footer__copy {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .footer__top {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 2.5rem 1.5rem;
+  }
+  .footer__bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .footer__links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}

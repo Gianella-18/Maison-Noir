@@ -1,0 +1,93 @@
+.item-card {
+  display: block;
+  color: inherit;
+  cursor: pointer;
+}
+
+.item-card__image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background-color: var(--creme);
+}
+
+.item-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.item-card:hover .item-card__image {
+  transform: scale(1.06);
+}
+
+.item-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.item-card:hover .item-card__overlay {
+  opacity: 1;
+}
+
+.item-card__cta {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--blanc);
+  border: 1px solid var(--blanc);
+  padding: 0.6rem 1.4rem;
+  transition: background 0.3s ease;
+}
+
+.item-card:hover .item-card__cta {
+  background: var(--or);
+  border-color: var(--or);
+  color: var(--noir);
+}
+
+.item-card__coleccion {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--or);
+  color: var(--noir);
+  padding: 0.2rem 0.6rem;
+}
+
+.item-card__info {
+  padding: 1rem 0 0;
+}
+
+.item-card__categoria {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin-bottom: 0.3rem;
+}
+
+.item-card__nombre {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--noir);
+  margin-bottom: 0.4rem;
+}
+
+.item-card__precio {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--gris);
+}

@@ -1,0 +1,247 @@
+/* HERO */
+.home__hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.home__hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.home__hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: slowZoom 12s ease-out both;
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+
+.home__hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10,10,10,0.85) 0%,
+    rgba(10,10,10,0.3) 50%,
+    rgba(10,10,10,0.1) 100%
+  );
+}
+
+.home__hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 4rem 6rem;
+  animation: fadeUp 0.9s 0.2s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.home__hero-pre {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 1rem;
+}
+
+.home__hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--blanc);
+  margin-bottom: 1.5rem;
+}
+
+.home__hero-title em {
+  font-style: italic;
+  color: var(--creme);
+}
+
+.home__hero-sub {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+  margin-bottom: 2rem;
+}
+
+.home__hero-cta {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--noir);
+  background: var(--or);
+  padding: 1rem 2.5rem;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.home__hero-cta:hover {
+  background: var(--blanc);
+  transform: translateY(-2px);
+}
+
+/* STRIP */
+.home__strip {
+  display: flex;
+  align-items: center;
+  padding: 2.5rem 4rem;
+  background: var(--noir);
+  gap: 3rem;
+}
+
+.home__strip-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.home__strip-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--or);
+  line-height: 1;
+}
+
+.home__strip-text {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+}
+
+.home__strip-divider {
+  width: 1px;
+  height: 30px;
+  background: #333;
+}
+
+/* FEATURED */
+.home__featured {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  min-height: 80vh;
+}
+
+.home__featured-text {
+  padding: 6rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--creme);
+}
+
+.home__label {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 1.5rem;
+}
+
+.home__featured-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--noir);
+  margin-bottom: 2rem;
+}
+
+.home__featured-desc {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--gris);
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+}
+
+.home__link {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--noir);
+  border-bottom: 1px solid var(--or);
+  padding-bottom: 2px;
+  align-self: flex-start;
+  transition: color 0.3s ease;
+}
+
+.home__link:hover {
+  color: var(--or);
+}
+
+/* COLLAGE */
+.home__collage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 3px;
+  background: var(--gris-clair);
+}
+
+.home__collage-item {
+  overflow: hidden;
+  background: var(--creme);
+}
+
+.home__collage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+  display: block;
+}
+
+.home__collage-item:hover img {
+  transform: scale(1.06);
+}
+
+/* QUOTE */
+.home__quote {
+  text-align: center;
+  padding: 6rem 2rem;
+  background: var(--noir);
+}
+
+.home__quote-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--blanc);
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+}
+
+.home__quote-author {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--or);
+}
+
+@media (max-width: 768px) {
+  .home__hero-content { padding: 0 1.5rem 5rem; }
+  .home__strip { padding: 2rem 1.5rem; gap: 1rem; }
+  .home__strip-text { display: none; }
+  .home__featured { grid-template-columns: 1fr; }
+  .home__featured-text { padding: 3rem 1.5rem; }
+  .home__collage { min-height: 60vw; }
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "nombre": "Trench Coat Obsidienne",
+    "precio": 1290000,
+    "categoria": "Abrigos",
+    "descripcion": "Un trench coat de doble botonadura en gabardina italiana. Corte estructurado que transita entre lo clásico y lo contemporáneo con una gravitas innata. Forro en seda natural.",
+    "imagen": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80",
+    "coleccion": "Otoño-Invierno",
+    "disponible": true
+  },
+  {
+    "id": 2,
+    "nombre": "Vestido Velours Minuit",
+    "precio": 890000,
+    "categoria": "Vestidos",
+    "descripcion": "Vestido midi en terciopelo negro profundo. Escote asimétrico y manga larga en contraste de satén. La pieza definitiva para noches que merecen ser recordadas.",
+    "imagen": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
+    "coleccion": "Otoño-Invierno",
+    "disponible": true
+  },
+  {
+    "id": 3,
+    "nombre": "Blazer Silhouette",
+    "precio": 750000,
+    "categoria": "Sacos",
+    "descripcion": "Blazer oversize en lana virgen gris antracita. Solapas pronunciadas y silueta angular que redefine el poder del vestuario femenino. Sin botones, cierre con cinturón.",
+    "imagen": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80",
+    "coleccion": "Resort",
+    "disponible": true
+  },
+  {
+    "id": 4,
+    "nombre": "Pantalón Palazzo Craie",
+    "precio": 520000,
+    "categoria": "Pantalones",
+    "descripcion": "Palazzo de tiro alto en crepé blanco tiza. Pierna extra wide que fluye con cada paso. Elástico en cintura oculto bajo una pretina estructurada.",
+    "imagen": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80",
+    "coleccion": "Resort",
+    "disponible": true
+  },
+  {
+    "id": 5,
+    "nombre": "Top Bustier Éclat",
+    "precio": 380000,
+    "categoria": "Tops",
+    "descripcion": "Bustier en brocado dorado. Varillas internas para soporte perfecto. El detalle central bordado en hilo metálico es una declaración en sí mismo.",
+    "imagen": "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80",
+    "coleccion": "Otoño-Invierno",
+    "disponible": true
+  },
+  {
+    "id": 6,
+    "nombre": "Falda Cuir Asymétrique",
+    "precio": 620000,
+    "categoria": "Faldas",
+    "descripcion": "Falda midi en cuero vegano negro con corte diagonal. Cremallera lateral expuesta como elemento decorativo. Forro en jersey para máximo confort.",
+    "imagen": "https://images.unsplash.com/photo-1551803091-e20673f15770?w=600&q=80",
+    "coleccion": "Otoño-Invierno",
+    "disponible": true
+  },
+  {
+    "id": 7,
+    "nombre": "Capa Dramatique",
+    "precio": 1580000,
+    "categoria": "Abrigos",
+    "descripcion": "Capa en cachemira pura color camel. Apertura frontal con broches dorados artesanales. La pieza que convierte cualquier calle en una pasarela.",
+    "imagen": "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80",
+    "coleccion": "Otoño-Invierno",
+    "disponible": true
+  },
+  {
+    "id": 8,
+    "nombre": "Conjunto Maillot Riviera",
+    "precio": 445000,
+    "categoria": "Conjuntos",
+    "descripcion": "Set de dos piezas en punto canelé color crema. Top de manga corta y pantalón de pierna recta. Versatilidad refinada para el día a día.",
+    "imagen": "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80",
+    "coleccion": "Resort",
+    "disponible": true
+  }
+]
