@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async' 
 import { CartProvider } from './context/CartContext'
 import { AuthProvider } from './context/AuthContext' 
-import RutaPrivada from './components/RutaPrivada' 
+import RutaPrivada from './components/auth/RutaPrivada' 
 
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
