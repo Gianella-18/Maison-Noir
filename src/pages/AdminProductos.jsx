@@ -135,6 +135,7 @@ export default function AdminProductos() {
         limpiarFormulario();
       }
     } catch (err) {
+      console.error('ERROR REAL:', err);
       setError('Ocurrió un error al procesar la solicitud.');
     } finally {
       setLoading(false);
