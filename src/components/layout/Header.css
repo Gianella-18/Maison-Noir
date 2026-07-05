@@ -95,3 +95,19 @@
     padding: 0.7rem 1.5rem;
   }
 }
+
+.nav__link--logout {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.nav__link--usuario {
+  color: var(--or);
+  cursor: default;
+}
+
+.nav__link--usuario::after {
+  display: none;
+}

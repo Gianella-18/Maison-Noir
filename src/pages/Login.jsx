@@ -1,7 +1,9 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
+
+const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -18,12 +20,14 @@ export default function Login() {
     setLoading(true);
 
     try {
-      // Intentamos iniciar sesión con la función del AuthContext
       await loginUsuario(email, password);
-      // Si es exitoso, redirigimos automáticamente a la ruta protegida
-      navigate('/admin/cupones');
+      // Si el email coincide con el de admin, va al panel; si no, a la tienda
+      if (email.trim().toLowerCase() === (ADMIN_EMAIL || '').toLowerCase()) {
+        navigate('/admin/productos');
+      } else {
+        navigate('/');
+      }
     } catch (err) {
-      // Manejo de errores básicos de Firebase
       if (err.code === 'auth/invalid-credential') {
         setError('Correo electrónico o contraseña incorrectos.');
       } else {
@@ -35,7 +39,7 @@ export default function Login() {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 mb-5">
       <Row className="justify-content-md-center">
         <Col xs={12} md={6} lg={4}>
           <Card className="shadow-sm p-4">
@@ -68,15 +72,19 @@ export default function Login() {
                   />
                 </Form.Group>
 
-                <Button 
-                  variant="dark" 
-                  type="submit" 
-                  className="w-100" 
+                <Button
+                  variant="dark"
+                  type="submit"
+                  className="w-100"
                   disabled={loading}
                 >
                   {loading ? 'Verificando...' : 'Ingresar'}
                 </Button>
               </Form>
+
+              <p className="text-center text-muted mt-3 mb-0" style={{ fontSize: '0.9rem' }}>
+                ¿No tenés cuenta? <Link to="/registro">Registrate</Link>
+              </p>
             </Card.Body>
           </Card>
         </Col>

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase/config';
 import { useCart } from '../context/CartContext';
 import './ProductoDetalle.css';
 
@@ -12,13 +14,26 @@ export default function ProductoDetalle() {
   const [agregado, setAgregado] = useState(false);
 
   useEffect(() => {
-    fetch('/productos.json')
-      .then(res => res.json())
-      .then(data => {
-        const found = data.find(p => p.id === parseInt(id));
-        setProducto(found || null);
+    setLoading(true);
+    const obtenerProducto = async () => {
+      try {
+        const docRef = doc(db, 'productos', id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setProducto({ id: docSnap.id, ...docSnap.data() });
+        } else {
+          setProducto(null);
+        }
+      } catch (err) {
+        console.error('Error al traer el producto:', err);
+        setProducto(null);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    obtenerProducto();
   }, [id]);
 
   const handleAddToCart = () => {
@@ -50,6 +65,8 @@ export default function ProductoDetalle() {
     maximumFractionDigits: 0,
   });
 
+  const disponible = producto.stock > 0;
+
   return (
     <div className="pd">
       <button className="pd__back" onClick={() => navigate(-1)}>
@@ -60,7 +77,6 @@ export default function ProductoDetalle() {
         <div className="pd__image-col">
           <div className="pd__image-wrap">
             <img src={producto.imagen} alt={producto.nombre} className="pd__image" />
-            <span className="pd__coleccion-badge">{producto.coleccion}</span>
           </div>
         </div>
 
@@ -77,23 +93,23 @@ export default function ProductoDetalle() {
 
           <div className="pd__details">
             <div className="pd__detail">
-              <span className="pd__detail-label">Colección</span>
-              <span className="pd__detail-value">{producto.coleccion}</span>
-            </div>
-            <div className="pd__detail">
               <span className="pd__detail-label">Categoría</span>
               <span className="pd__detail-value">{producto.categoria}</span>
             </div>
             <div className="pd__detail">
+              <span className="pd__detail-label">Stock</span>
+              <span className="pd__detail-value">{producto.stock}</span>
+            </div>
+            <div className="pd__detail">
               <span className="pd__detail-label">Disponibilidad</span>
-              <span className="pd__detail-value">{producto.disponible ? 'En stock' : 'Agotado'}</span>
+              <span className="pd__detail-value">{disponible ? 'En stock' : 'Agotado'}</span>
             </div>
           </div>
 
           <button
             className={`pd__add-btn ${agregado ? 'added' : ''}`}
             onClick={handleAddToCart}
-            disabled={!producto.disponible}
+            disabled={!disponible}
           >
             {agregado ? '✓ Agregado al carrito' : 'Agregar al carrito'}
           </button>

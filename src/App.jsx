@@ -11,6 +11,7 @@ import ProductoDetalle from './pages/ProductoDetalle'
 import Carrito from './pages/Carrito'
 import GestionCupones from './pages/GestionCupones'
 import Login from './pages/Login' 
+import Registro from './pages/Registro'
 import AdminProductos from './pages/AdminProductos' 
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
                 <Route path="/producto/:id" element={<ProductoDetalle />} />
                 <Route path="/carrito" element={<Carrito />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/registro" element={<Registro />} />
 
                 <Route 
                   path="/admin/cupones" 

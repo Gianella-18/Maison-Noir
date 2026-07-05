@@ -17,10 +17,14 @@ const CUPONES_VALIDOS = [
 ]
 
 export default function Carrito() {
-  const { cartItems, removeFromCart, updateCantidad, totalPrecio, totalItems } = useCart()
+  const { cartItems, removeFromCart, updateCantidad, totalPrecio, totalItems, clearCart } = useCart()
   const [codigoCupon, setCodigoCupon] = useState('')
   const [cuponAplicado, setCuponAplicado] = useState(null)
   const [errorCupon, setErrorCupon] = useState('')
+
+  // Estado de la compra ya finalizada (simulada)
+  const [compraFinalizada, setCompraFinalizada] = useState(false)
+  const [resumenFinal, setResumenFinal] = useState(null)
 
   const handleAplicarCupon = () => {
     setErrorCupon('')
@@ -41,6 +45,41 @@ export default function Carrito() {
     : 0
   const totalConDescuento = totalPrecio - descuento
 
+  const handleFinalizarCompra = () => {
+    // Guardamos el resumen antes de vaciar el carrito, para mostrarlo en la confirmación
+    setResumenFinal({
+      cantidadItems: totalItems,
+      total: totalConDescuento,
+      cupon: cuponAplicado?.codigo || null,
+    })
+    clearCart()
+    setCuponAplicado(null)
+    setCompraFinalizada(true)
+  }
+
+  // --- PANTALLA DE CONFIRMACIÓN (compra simulada) ---
+  if (compraFinalizada && resumenFinal) {
+    return (
+      <div className="carrito__empty">
+        <div className="carrito__empty-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        </div>
+        <h2 className="carrito__empty-title">¡Compra confirmada!</h2>
+        <p className="carrito__empty-sub">
+          Compraste {resumenFinal.cantidadItems} {resumenFinal.cantidadItems === 1 ? 'pieza' : 'piezas'} por un total de{' '}
+          <strong>{formatARS(resumenFinal.total)}</strong>
+          {resumenFinal.cupon && <> (cupón {resumenFinal.cupon} aplicado)</>}.
+          <br />
+          Gracias por comprar en Maison Noir.
+        </p>
+        <Link to="/productos" className="carrito__empty-cta">Seguir comprando</Link>
+      </div>
+    )
+  }
+
+  // --- CARRITO VACÍO (sin haber comprado nada) ---
   if (cartItems.length === 0) {
     return (
       <div className="carrito__empty">
@@ -143,7 +182,9 @@ export default function Carrito() {
             <span>{formatARS(totalConDescuento)}</span>
           </div>
 
-          <button className="carrito__checkout">Finalizar Compra</button>
+          <button className="carrito__checkout" onClick={handleFinalizarCompra}>
+            Finalizar Compra
+          </button>
 
           <Link to="/productos" className="carrito__continue">
             ← Continuar comprando

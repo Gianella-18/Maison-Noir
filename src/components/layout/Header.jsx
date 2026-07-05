@@ -1,25 +1,59 @@
-import { Link, useLocation } from 'react-router-dom'
-import CartWidget from '../cart/CartWidget'
-import './Header.css'
+import { useContext } from 'react';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+import CartWidget from '../cart/CartWidget';
+import './Header.css';
 
 export default function Header() {
-  const location = useLocation()
+  const { usuario, esAdmin, loading, logoutUsuario } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logoutUsuario();
+    navigate('/');
+  };
 
   return (
     <header className="header">
       <div className="header__top">
         <span className="header__tagline">Otoño — Invierno 2026</span>
-        <Link to="/" className="header__logo">
-          MAISON NOIR
-        </Link>
+        <Link to="/" className="header__logo">Maison Noir</Link>
         <CartWidget />
       </div>
+
       <nav className="header__nav">
-        <Link to="/" className={`nav__link ${location.pathname === '/' ? 'active' : ''}`}>Inicio</Link>
-        <Link to="/productos" className={`nav__link ${location.pathname.startsWith('/producto') ? 'active' : ''}`}>Colección</Link>
-        <Link to="/carrito" className={`nav__link ${location.pathname === '/carrito' ? 'active' : ''}`}>Carrito</Link>
-        <Link to="/admin/cupones" className={`nav__link nav__link--admin ${location.pathname.startsWith('/admin') ? 'active' : ''}`}>Admin</Link>
+        <NavLink to="/" end className="nav__link">Inicio</NavLink>
+        <NavLink to="/productos" className="nav__link">Colección</NavLink>
+        <NavLink to="/carrito" className="nav__link">Carrito</NavLink>
+
+        {/* Mientras Firebase verifica la sesión, no mostramos nada de esto para evitar un parpadeo */}
+        {!loading && (
+          <>
+            {!usuario && (
+              <NavLink to="/login" className="nav__link">Iniciar Sesión</NavLink>
+            )}
+
+            {usuario && esAdmin && (
+              <>
+                <NavLink to="/admin/productos" className="nav__link">Productos</NavLink>
+                <NavLink to="/admin/cupones" className="nav__link">Cupones</NavLink>
+              </>
+            )}
+
+            {usuario && !esAdmin && (
+              <span className="nav__link nav__link--usuario">
+                {usuario.displayName || usuario.email}
+              </span>
+            )}
+
+            {usuario && (
+              <button className="nav__link nav__link--logout" onClick={handleLogout}>
+                Cerrar Sesión
+              </button>
+            )}
+          </>
+        )}
       </nav>
     </header>
-  )
+  );
 }
