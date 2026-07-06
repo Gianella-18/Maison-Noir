@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { HelmetProvider } from 'react-helmet-async' 
+import { HelmetProvider } from 'react-helmet-async'
 import { CartProvider } from './context/CartContext'
-import { AuthProvider } from './context/AuthContext' 
-import RutaPrivada from './components/auth/RutaPrivada' 
+import { AuthProvider } from './context/AuthContext'
+import RutaPrivada from './components/auth/RutaPrivada'
 
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
@@ -10,41 +10,43 @@ import Productos from './pages/Productos'
 import ProductoDetalle from './pages/ProductoDetalle'
 import Carrito from './pages/Carrito'
 import GestionCupones from './pages/GestionCupones'
-import Login from './pages/Login' 
-import Registro from './pages/Registro'
-import AdminProductos from './pages/AdminProductos' 
+import Login from './pages/Login'
+import AdminProductos from './pages/AdminProductos'
 
 export default function App() {
   return (
-    <HelmetProvider> {/* <-- ENVOLVEMOS AQUÍ */}
+    <HelmetProvider>
       <BrowserRouter>
-        <AuthProvider> 
+        <AuthProvider>
           <CartProvider>
             <Layout>
               <Routes>
+                {/* Rutas públicas del comprador */}
                 <Route path="/" element={<Home />} />
                 <Route path="/productos" element={<Productos />} />
                 <Route path="/productos/:categoriaId" element={<Productos />} />
                 <Route path="/producto/:id" element={<ProductoDetalle />} />
                 <Route path="/carrito" element={<Carrito />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/registro" element={<Registro />} />
 
-                <Route 
-                  path="/admin/cupones" 
+                {/* Ruta oculta de acceso al admin: no está linkeada en ningún lado del sitio */}
+                <Route path="/acceso-restringido" element={<Login />} />
+
+                {/* Rutas protegidas: solo accesibles si esAdmin === true */}
+                <Route
+                  path="/gestion/cupones"
                   element={
                     <RutaPrivada>
                       <GestionCupones />
                     </RutaPrivada>
-                  } 
+                  }
                 />
-                <Route 
-                  path="/admin/productos" 
+                <Route
+                  path="/gestion/productos"
                   element={
                     <RutaPrivada>
                       <AdminProductos />
                     </RutaPrivada>
-                  } 
+                  }
                 />
               </Routes>
             </Layout>
@@ -52,5 +54,8 @@ export default function App() {
         </AuthProvider>
       </BrowserRouter>
     </HelmetProvider>
-  )
+ 
+ 
+ 
+ )
 }

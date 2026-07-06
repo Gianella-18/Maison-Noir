@@ -1,9 +1,7 @@
 import { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
-
-const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -21,12 +19,7 @@ export default function Login() {
 
     try {
       await loginUsuario(email, password);
-      // Si el email coincide con el de admin, va al panel; si no, a la tienda
-      if (email.trim().toLowerCase() === (ADMIN_EMAIL || '').toLowerCase()) {
-        navigate('/admin/productos');
-      } else {
-        navigate('/');
-      }
+      navigate('/gestion/productos');
     } catch (err) {
       if (err.code === 'auth/invalid-credential') {
         setError('Correo electrónico o contraseña incorrectos.');
@@ -45,7 +38,7 @@ export default function Login() {
           <Card className="shadow-sm p-4">
             <Card.Body>
               <h2 className="text-center mb-4">Maison Noir</h2>
-              <h4 className="text-center text-muted mb-4">Iniciar Sesión</h4>
+              <h4 className="text-center text-muted mb-4">Acceso Administrador</h4>
 
               {error && <Alert variant="danger">{error}</Alert>}
 
@@ -54,7 +47,7 @@ export default function Login() {
                   <Form.Label>Correo Electrónico</Form.Label>
                   <Form.Control
                     type="email"
-                    placeholder="ejemplo@correo.com"
+                    placeholder="admin@admin.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -72,19 +65,10 @@ export default function Login() {
                   />
                 </Form.Group>
 
-                <Button
-                  variant="dark"
-                  type="submit"
-                  className="w-100"
-                  disabled={loading}
-                >
+                <Button variant="dark" type="submit" className="w-100" disabled={loading}>
                   {loading ? 'Verificando...' : 'Ingresar'}
                 </Button>
               </Form>
-
-              <p className="text-center text-muted mt-3 mb-0" style={{ fontSize: '0.9rem' }}>
-                ¿No tenés cuenta? <Link to="/registro">Registrate</Link>
-              </p>
             </Card.Body>
           </Card>
         </Col>

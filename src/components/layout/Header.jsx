@@ -26,31 +26,16 @@ export default function Header() {
         <NavLink to="/productos" className="nav__link">Colección</NavLink>
         <NavLink to="/carrito" className="nav__link">Carrito</NavLink>
 
-        {/* Mientras Firebase verifica la sesión, no mostramos nada de esto para evitar un parpadeo */}
-        {!loading && (
+        {/* El comprador nunca ve nada de login: sus rutas son públicas.
+            Estos links solo aparecen si ya hay una sesión de admin activa
+            (a la que solo se llega por la URL oculta /acceso-restringido). */}
+        {!loading && usuario && esAdmin && (
           <>
-            {!usuario && (
-              <NavLink to="/login" className="nav__link">Iniciar Sesión</NavLink>
-            )}
-
-            {usuario && esAdmin && (
-              <>
-                <NavLink to="/admin/productos" className="nav__link">Productos</NavLink>
-                <NavLink to="/admin/cupones" className="nav__link">Cupones</NavLink>
-              </>
-            )}
-
-            {usuario && !esAdmin && (
-              <span className="nav__link nav__link--usuario">
-                {usuario.displayName || usuario.email}
-              </span>
-            )}
-
-            {usuario && (
-              <button className="nav__link nav__link--logout" onClick={handleLogout}>
-                Cerrar Sesión
-              </button>
-            )}
+            <NavLink to="/gestion/productos" className="nav__link">Productos</NavLink>
+            <NavLink to="/gestion/cupones" className="nav__link">Cupones</NavLink>
+            <button className="nav__link nav__link--logout" onClick={handleLogout}>
+              Cerrar Sesión
+            </button>
           </>
         )}
       </nav>
