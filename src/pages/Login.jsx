@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
@@ -9,8 +9,15 @@ export default function Login() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { loginUsuario } = useContext(AuthContext);
+  const { usuario, esAdmin, loginUsuario } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // Redirige recién cuando el AuthContext confirma que la sesión de admin quedó activa
+  useEffect(() => {
+    if (usuario && esAdmin) {
+      navigate('/gestion/productos');
+    }
+  }, [usuario, esAdmin, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +26,8 @@ export default function Login() {
 
     try {
       await loginUsuario(email, password);
-      navigate('/gestion/productos');
+      // No navegamos acá directamente: el useEffect de arriba se encarga
+      // apenas el contexto confirme la sesión, evitando el rebote al login.
     } catch (err) {
       if (err.code === 'auth/invalid-credential') {
         setError('Correo electrónico o contraseña incorrectos.');
